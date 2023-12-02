@@ -41,5 +41,41 @@
 
             return sum;
         }
+
+        public static int Puzzle2()
+        {
+            var sum = 0;
+            var input = File.ReadAllLines(Consts.MyInputPath + @"\inputDay2Puzzle2.txt");
+            foreach (var line in input)
+            {
+                var myTempDictionary = new Dictionary<string, int>()
+                {
+                    { "blue", 0 },
+                    { "red", 0 },
+                    { "green", 0}
+                };
+
+                var splitFromId = line.Split(":");
+
+                var splitSets = splitFromId[1].Split(";");
+                foreach (var set in splitSets)
+                {
+                    var splitBalls = set.Split(",");
+                    foreach (var balls in splitBalls)
+                    {
+                        var splitNumberFromBall = balls.Split();
+                        var numberOfBallsShown = int.Parse(splitNumberFromBall[1]);
+                        if (numberOfBallsShown > myTempDictionary[splitNumberFromBall[2]])
+                        {
+                            myTempDictionary[splitNumberFromBall[2]] = numberOfBallsShown;
+                        }
+                    }
+                }
+
+                sum += myTempDictionary["red"] * myTempDictionary["green"] * myTempDictionary["blue"];
+            }
+
+            return sum;
+        }
     }
 }

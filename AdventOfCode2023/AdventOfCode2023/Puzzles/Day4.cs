@@ -19,15 +19,11 @@ namespace AdventOfCode2023.Puzzles
                 var splitCards = line.Split(':')[1].Split("|");
                 var winnersCard = splitCards[0];
                 var myCard = splitCards[1];
-                var winningNumbers = new List<int>();
-                
-                foreach (var number in winnersCard.Split(' '))
-                {
-                    if (int.TryParse(number, out var insertedNumber))
-                    {
-                        winningNumbers.Add(insertedNumber);
-                    }
-                }
+                var winningNumbers = winnersCard.Split(' ')
+                    .Select(x => int.TryParse(x, out var n) ? n : (int?)null)
+                    .Where(n => n.HasValue)
+                    .Select(n => n.Value)
+                    .ToList();
 
                 foreach (var number in myCard.Split(' '))
                 {
@@ -57,16 +53,12 @@ namespace AdventOfCode2023.Puzzles
                 var splitCards = line.Split(':')[1].Split("|");
                 var winnersCard = splitCards[0];
                 var myCard = splitCards[1];
-                var winningNumbers = new List<int>();
+                var winningNumbers = winnersCard.Split(' ')
+                    .Select(x => int.TryParse(x, out var n) ? n : (int?)null)
+                    .Where(n => n.HasValue)
+                    .Select(n => n.Value)
+                    .ToList();
                 var addedCards = 0;
-
-                foreach (var number in winnersCard.Split(' '))
-                {
-                    if (int.TryParse(number, out var insertedNumber))
-                    {
-                        winningNumbers.Add(insertedNumber);
-                    }
-                }
 
                 foreach (var number in myCard.Split(' '))
                 {

@@ -78,10 +78,7 @@ namespace AdventOfCode2023.Puzzles
 
                 for (int k = 1; k <= addedCards; k++)
                 {
-                    for (int x = 0; x < cardsPerGame[j + 1]; x++)
-                    {
-                        cardsPerGame[j + k + 1]++;
-                    }
+                    cardsPerGame[j + k + 1] += cardsPerGame[j + 1];
                 }
 
                 sum += cardsPerGame[j+1];

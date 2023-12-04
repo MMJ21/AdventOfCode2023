@@ -15,25 +15,20 @@ namespace AdventOfCode2023.Puzzles
 
             foreach (var line in input)
             {
-                var lineSum = 0;
                 var splitCards = line.Split(':')[1].Split("|");
                 var winnersCard = splitCards[0];
                 var myCard = splitCards[1];
+
                 var winningNumbers = winnersCard.Split(' ')
                     .Select(x => int.TryParse(x, out var n) ? n : (int?)null)
                     .Where(n => n.HasValue)
                     .Select(n => n.Value)
                     .ToList();
 
-                foreach (var number in myCard.Split(' '))
-                {
-                    if (int.TryParse(number, out var myNumber) && winningNumbers.Contains(myNumber))
-                    {
-                        lineSum = lineSum == 0 ? 1 : lineSum * 2;
-                    }
-                }
-
-                sum += lineSum;
+                sum += (int)Math.Pow(2,
+                    myCard.Split(' ')
+                    .Select(x => int.TryParse(x, out var n) ? n : (int?)null)
+                    .Where(n => n.HasValue && winningNumbers.Contains(n.Value)).Count() - 1);
             }
             return sum;
         }

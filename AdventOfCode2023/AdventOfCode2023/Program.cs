@@ -1,4 +1,4 @@
 ﻿using AdventOfCode2023.Puzzles;
 
-Console.WriteLine("Day3 Puzzle1: " + Day3.Puzzle1());
-Console.WriteLine("Day3 Puzzle2: " + Day3.Puzzle2());
+Console.WriteLine("Day4 Puzzle1: " + Day4.Puzzle1());
+Console.WriteLine("Day4 Puzzle2: " + Day4.Puzzle2());
